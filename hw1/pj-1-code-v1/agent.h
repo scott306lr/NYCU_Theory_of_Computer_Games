@@ -193,17 +193,17 @@ class heuristic_slider : public agent {
     heuristic_slider(const std::string& args = "")
         : agent("name=slide role=slider " + args),
           opcode({0, 1, 2, 3}) {
-        spaces[0] = {12, 13, 14, 15};
-        spaces[1] = {0, 4, 8, 12};
-        spaces[2] = {0, 1, 2, 3};
-        spaces[3] = {3, 7, 11, 15};
-        spaces[4] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+        // spaces[0] = {12, 13, 14, 15};
+        // spaces[1] = {0, 4, 8, 12};
+        // spaces[2] = {0, 1, 2, 3};
+        // spaces[3] = {3, 7, 11, 15};
+        // spaces[4] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     }
 
     virtual action take_action(const board& before) {
         int best = -1;
         // board::reward best_reward = -1;
-        board::reward_set best_reward = {-1, -1, -1};
+        board::reward_set best_reward = {-1, -1};
 
         for (int op : opcode) {
             board temp_b = before;
@@ -214,7 +214,7 @@ class heuristic_slider : public agent {
                 continue;
 
             board::reward_set rewards = temp_b.heuristic();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
                 if (rewards[i] > best_reward[i]) {
                     best_reward = rewards;
                     best = op;

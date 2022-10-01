@@ -32,7 +32,7 @@ class board {
     typedef uint64_t data;
     typedef uint64_t score;
     typedef int reward;
-    typedef std::array<reward, 3> reward_set;
+    typedef std::array<reward, 2> reward_set;
 
    public:
     board()
@@ -211,10 +211,10 @@ class board {
     }
 
     reward_set heuristic() {
-        reward_set h = {-1, -1, -1};
+        reward_set h = {-1, -1};
         h[0] = empty_reward();
         h[1] = monotonicity_reward();
-        h[2] = greedy_reward();
+        // h[2] = greedy_reward();
         return h;
     }
 
